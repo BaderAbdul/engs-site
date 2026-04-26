@@ -9,29 +9,28 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 shadow-sm">
         <div className="flex justify-between h-16 items-center">
           
-          {/* الشعار والروابط الأساسية */}
           <div className="flex items-center gap-8">
-            {/* تم تغيير الاسم هنا إلى QEC Hub */}
-            <Link href="/" className="text-xl font-bold text-blue-600">
-              QEC Hub
+            {/* استخدمنا اللون الأزرق الخاص بالهوية هنا */}
+            <Link href="/" className="text-2xl font-black text-qec-blue">
+              QEC <span className="text-qec-brown font-bold">Hub</span>
             </Link>
             
             <div className="hidden md:flex gap-6 text-slate-600 font-medium">
-              <Link href="/events" className="flex items-center gap-2 hover:text-blue-500 transition">
+              <Link href="/events" className="flex items-center gap-2 hover:text-qec-blue transition">
                 <Calendar size={18} /> الفعاليات
               </Link>
-              <Link href="/inventory" className="flex items-center gap-2 hover:text-blue-500 transition">
+              <Link href="/inventory" className="flex items-center gap-2 hover:text-qec-blue transition">
                 <Box size={18} /> المستودع
               </Link>
-              <Link href="/pinout" className="flex items-center gap-2 hover:text-blue-500 transition">
+              <Link href="/pinout" className="flex items-center gap-2 hover:text-qec-blue transition">
                 <Cpu size={18} /> المرجع الهندسي
               </Link>
             </div>
           </div>
 
-          {/* زر لوحة التحكم */}
           <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition font-bold text-sm shadow-sm flex items-center gap-2">
+            {/* استخدمنا اللون البني الخاص بالهوية للزر الأساسي */}
+            <Link href="/dashboard" className="bg-qec-brown text-white px-5 py-2.5 rounded-xl hover:bg-[#664b44] transition font-bold text-sm shadow-sm flex items-center gap-2">
               <User size={18} /> لوحة التحكم
             </Link>
           </div>
