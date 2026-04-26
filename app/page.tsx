@@ -1,21 +1,21 @@
-import { ArrowRight, Calendar, Box, Cpu, Star, ChevronLeft } from 'lucide-react';
+import { ArrowRight, Calendar, Box, Star, ChevronLeft, Rocket } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <div className="relative min-h-screen pb-20">
       
-      {/* 🔴 هنا تم وضع سطر الخلفية الجديد الذي يدعم الوضع الليلي */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-slate-50 dark:bg-slate-950 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] transition-colors duration-300"></div>
+      {/* خلفية الشبكة الهندسية التي تدعم الوضع الليلي */}
+      <div className="absolute inset-0 -z-10 h-full w-full bg-slate-50 dark:bg-slate-950 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-      <div className="max-w-7xl mx-auto px-4 py-12 space-y-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 py-12 space-y-24 relative z-10">
 
         {/* 1. قسم الترحيب (Hero Section) */}
         <section className="text-right py-10">
-          <h1 className="text-5xl font-extrabold mb-6 text-slate-900 dark:text-white leading-tight transition-colors">
+          <h1 className="text-5xl font-extrabold mb-6 text-slate-900 dark:text-white leading-tight">
             مرحباً بك في <span className="text-qec-blue">QEC Hub</span>
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mb-10 leading-relaxed transition-colors">
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mb-10 leading-relaxed">
             المنصة المركزية لطلاب كلية الهندسة. هنا يمكنك إدارة مشاريعك، تتبع عهدتك، واكتشاف أحدث الفعاليات التقنية في الكلية.
           </p>
           <div className="flex gap-4">
@@ -29,7 +29,7 @@ export default function Home() {
         <section className="space-y-6">
           <div className="flex justify-between items-end">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 transition-colors">أحدث الفعاليات</h2>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2 transition-colors">أحدث الفعاليات</h2>
               <p className="text-slate-500 dark:text-slate-400 transition-colors">لا تفوت فرصة التعلم وتطوير مهاراتك</p>
             </div>
             <Link href="/events" className="text-qec-blue font-bold flex items-center gap-1 hover:underline">
@@ -68,7 +68,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6 relative z-10">
             <div>
               <h2 className="text-3xl font-bold mb-2 text-slate-900 dark:text-white transition-colors">المستودع الرقمي</h2>
-              <p className="text-slate-500 dark:text-slate-400 transition-colors">تتبع توفر القطع والمعدات في المعمل</p>
+              <p className="text-slate-500 dark:text-slate-400 transition-colors">تتبع توفر القطع والمعدات في المعامل</p>
             </div>
             <Link href="/inventory" className="bg-qec-brown text-white px-6 py-3 rounded-xl font-bold hover:bg-[#664b44] transition shadow-md">
               طلب استعارة قطعة
@@ -92,33 +92,38 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. المرجع السريع (Quick Pinouts) */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white leading-snug transition-colors">
-              اختصارات هندسية <br /> بضغطة زر واحدة
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed transition-colors">
-              لا داعي للبحث الطويل عن مخططات التوصيل (Pinouts) أو قيم المقاومات. وفرنا لك مرجعاً سريعاً لكل ما تحتاجه في تجاربك المعملية اليومية.
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm transition-colors duration-300">
-                <Cpu className="text-qec-blue" />
-                <span className="font-bold text-slate-700 dark:text-slate-300">مخططات Arduino و ESP32</span>
-              </div>
-              <div className="flex items-center gap-4 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm transition-colors duration-300">
-                <Box className="text-qec-teal" />
-                <span className="font-bold text-slate-700 dark:text-slate-300">دليل توصيل الحساسات الأساسية</span>
-              </div>
+        {/* 4. معرض المشاريع (Projects Showcase) - القسم الجديد والمحدث */}
+        <section className="space-y-8 pb-10">
+          <div className="flex justify-between items-end">
+            <div>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2 transition-colors">معرض الابتكارات</h2>
+              <p className="text-slate-500 dark:text-slate-400 transition-colors">أحدث إبداعات ومشاريع طلاب الكلية</p>
             </div>
-            <Link href="/pinout" className="inline-block text-qec-brown dark:text-qec-teal font-bold hover:underline transition-colors">
-              اكتشف المرجع الهندسي الكامل
+            <Link href="/projects" className="text-qec-brown dark:text-qec-teal font-bold hover:underline transition-colors flex items-center gap-1">
+              تصفح المعرض الكامل <ChevronLeft size={18} />
             </Link>
           </div>
 
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 h-80 rounded-[2.5rem] relative overflow-hidden shadow-xl shadow-slate-200/50 dark:shadow-none flex items-center justify-center group transition-colors duration-300">
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/circuit-board.png')] opacity-[0.03] dark:opacity-10"></div>
-            <Cpu size={120} className="text-qec-blue opacity-20 dark:opacity-10 group-hover:opacity-40 group-hover:scale-110 transition duration-500" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { id: 1, title: "نظام ري ذكي متصل بالسحابة", author: "فريق الإبداع", category: "هندسة حاسب", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" },
+              { id: 2, title: "ذراع آلية للفرز الآلي", author: "عبدالله السالم", category: "أنظمة تحكم", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600" },
+              { id: 3, title: "طائرة بدون طيار (Drone) للمراقبة", author: "مشروع تخرج", category: "هندسة كهربائية", image: "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&q=80&w=600" },
+            ].map((project) => (
+              <div key={project.id} className="bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                <div className="h-56 overflow-hidden relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-bold text-qec-blue dark:text-qec-teal shadow-sm">
+                    {project.category}
+                  </div>
+                </div>
+                <div className="p-7">
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 group-hover:text-qec-blue dark:group-hover:text-qec-teal transition-colors duration-300">{project.title}</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">بواسطة: {project.author}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
