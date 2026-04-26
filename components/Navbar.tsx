@@ -1,5 +1,6 @@
 'use client';
 
+import ThemeToggle from './ThemeToggle';
 import Link from 'next/link';
 import { Calendar, Box, Cpu, User } from 'lucide-react';
 
@@ -28,12 +29,13 @@ export default function Navbar() {
             </div>
           </div>
 
+          
           <div className="flex items-center gap-4">
-            {/* استخدمنا اللون البني الخاص بالهوية للزر الأساسي */}
-            <Link href="/dashboard" className="bg-qec-brown text-white px-5 py-2.5 rounded-xl hover:bg-[#664b44] transition font-bold text-sm shadow-sm flex items-center gap-2">
-              <User size={18} /> لوحة التحكم
-            </Link>
-          </div>
+  <ThemeToggle /> {/* <-- هذا هو زر الشمس والقمر */}
+  <Link href="/dashboard" className="bg-qec-brown text-white px-5 py-2.5 rounded-xl hover:bg-[#664b44] transition font-bold text-sm shadow-sm flex items-center gap-2">
+    <User size={18} /> لوحة التحكم
+  </Link>
+</div>
 
         </div>
       </div>
