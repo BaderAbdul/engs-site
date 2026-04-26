@@ -8,16 +8,16 @@ import Link from 'next/link';
 const STUDENT_DATA = {
   name: "بدر",
   major: "هندسة كهربائية",
-  role: "عضو - قسم الروبوتات",
-  community: "GDG_QU",
+  role: "عضو فعال",
+  community: "نادي كلية الهندسة",
   totalPoints: 450,
-  level: "مطور مبتكر",
+  level: "مهندس واعد",
   borrowedItems: [
-    { id: 1, name: "Arduino Uno R3", dueDate: "2026-04-30", status: "متأخر" },
-    { id: 2, name: "ESP32 DevKit", dueDate: "2026-05-02", status: "نشط" }
+    { id: 1, name: "مقياس متعدد (Multimeter)", dueDate: "2026-04-30", status: "متأخر" },
+    { id: 2, name: "لوحة تجارب (Breadboard)", dueDate: "2026-05-02", status: "نشط" }
   ],
   upcomingEvents: [
-    { id: 1, title: "ورشة أساسيات الأردوينو", date: "2026-05-10", time: "04:00 م" }
+    { id: 1, title: "معسكر تصميم الدوائر المطبوعة (PCB)", date: "2026-05-10", time: "04:00 م" }
   ]
 };
 
@@ -25,7 +25,6 @@ export default function DashboardPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12" dir="rtl">
       
-      {/* قسم الترحيب والملف الشخصي */}
       <div className="bg-slate-900 rounded-[2rem] p-8 md:p-10 text-white mb-10 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -53,12 +52,11 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* العمود الأول: القطع المستعارة */}
         <div className="lg:col-span-1 space-y-8">
           <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold flex items-center gap-2 text-slate-800">
-                <Box className="text-blue-600" /> عهدة القطع
+                <Box className="text-blue-600" /> عهدة المعدات
               </h2>
               <Link href="/inventory" className="text-sm text-blue-600 font-bold hover:underline">المستودع</Link>
             </div>
@@ -80,20 +78,18 @@ export default function DashboardPage() {
                 </div>
               ))}
               {STUDENT_DATA.borrowedItems.length === 0 && (
-                <p className="text-center text-slate-500 text-sm py-4">لا توجد قطع مستعارة حالياً.</p>
+                <p className="text-center text-slate-500 text-sm py-4">لا توجد معدات مستعارة حالياً.</p>
               )}
             </div>
           </div>
         </div>
 
-        {/* العمود الثاني والثالث: الفعاليات والنشاط */}
         <div className="lg:col-span-2 space-y-8">
           
-          {/* الفعاليات القادمة */}
           <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold flex items-center gap-2 text-slate-800">
-                <Calendar className="text-purple-600" /> فعالياتك القادمة
+                <Calendar className="text-purple-600" /> الفعاليات المسجلة
               </h2>
               <Link href="/events" className="text-sm text-purple-600 font-bold hover:underline">كل الفعاليات</Link>
             </div>
@@ -111,10 +107,9 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* سجل الإنجازات (Gamification) */}
           <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
             <h2 className="text-xl font-bold flex items-center gap-2 text-slate-800 mb-6">
-              <Activity className="text-amber-500" /> أحدث الإنجازات
+              <Activity className="text-amber-500" /> أحدث الإنجازات الأكاديمية
             </h2>
             <div className="space-y-4">
               <div className="flex items-center gap-4 p-4 rounded-2xl bg-amber-50 border border-amber-100">
@@ -122,8 +117,8 @@ export default function DashboardPage() {
                   <Medal size={24} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-amber-900">أول مشروع مطبوع 3D</h3>
-                  <p className="text-sm text-amber-700/80 font-medium">حصلت على 50 نقطة لمشاركتك في المعرض الأخير.</p>
+                  <h3 className="font-bold text-amber-900">مشاركة متميزة في معرض الكلية</h3>
+                  <p className="text-sm text-amber-700/80 font-medium">حصلت على 50 نقطة لمشاركتك الفعالة في عرض مشروع التخرج.</p>
                 </div>
               </div>
             </div>

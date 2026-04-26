@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-// لاحظ أننا أضفنا أيقونة User هنا
 import { Calendar, Box, Cpu, User } from 'lucide-react';
 
 export default function Navbar() {
@@ -12,8 +11,9 @@ export default function Navbar() {
           
           {/* الشعار والروابط الأساسية */}
           <div className="flex items-center gap-8">
+            {/* تم تغيير الاسم هنا إلى QEC Hub */}
             <Link href="/" className="text-xl font-bold text-blue-600">
-              Robotics Hub
+              QEC Hub
             </Link>
             
             <div className="hidden md:flex gap-6 text-slate-600 font-medium">
@@ -29,7 +29,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* زر لوحة التحكم الجديد */}
+          {/* زر لوحة التحكم */}
           <div className="flex items-center gap-4">
             <Link href="/dashboard" className="bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition font-bold text-sm shadow-sm flex items-center gap-2">
               <User size={18} /> لوحة التحكم
