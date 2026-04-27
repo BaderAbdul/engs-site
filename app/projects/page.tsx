@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Rocket, Search, Filter, ArrowUpRight, Github, ExternalLink } from 'lucide-react';
+import { Rocket, Search, Filter, ArrowUpRight, GitHub, ExternalLink, X, Upload, ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
 
-// 1. تحديث قائمة الأقسام
 const DEPARTMENTS = ['الكل', 'هندسة كهربائية', 'هندسة مدنية', 'هندسة ميكانيكية'];
 
-// 2. تحديث البيانات لتشمل الأقسام الجديدة
 const PROJECTS_DATA = [
   {
     id: 1,
@@ -37,9 +36,9 @@ const PROJECTS_DATA = [
   }
 ];
 
-
 export default function ProjectsPage() {
   const [activeTab, setActiveTab] = useState('الكل');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredProjects = activeTab === 'الكل' 
     ? PROJECTS_DATA 
@@ -47,13 +46,12 @@ export default function ProjectsPage() {
 
   return (
     <div className="relative min-h-screen">
-      {/* خلفية الشبكة الهندسية الموحدة */}
       <div className="absolute inset-0 -z-10 h-full w-full bg-slate-50 dark:bg-slate-950 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
         
-        {/* رأس الصفحة */}
-        <header className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+        {/* 1. رأس الصفحة */}
+        <header className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6 text-right">
           <div>
             <div className="flex items-center gap-3 text-qec-blue mb-4 font-bold tracking-widest uppercase text-sm">
               <Rocket size={20} /> معرض الابتكارات
@@ -65,13 +63,16 @@ export default function ProjectsPage() {
               استكشف مشاريع تخرج وأبحاث زملائك المبدعين في مختلف المجالات الهندسية.
             </p>
           </div>
-          <button className="bg-qec-brown text-white px-6 py-3 rounded-2xl font-bold hover:bg-[#664b44] transition shadow-lg flex items-center gap-2">
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="bg-qec-brown text-white px-6 py-3 rounded-2xl font-bold hover:bg-[#664b44] transition shadow-lg flex items-center gap-2"
+          >
             أضف مشروعك <ArrowUpRight size={20} />
           </button>
         </header>
 
-        {/* أزرار الفلترة */}
-        <div className="flex flex-wrap gap-3 mb-12">
+        {/* 2. أزرار الفلترة */}
+        <div className="flex flex-wrap gap-3 mb-12 justify-start">
           {DEPARTMENTS.map((dept) => (
             <button
               key={dept}
@@ -87,10 +88,10 @@ export default function ProjectsPage() {
           ))}
         </div>
 
-        {/* شبكة المشاريع */}
+        {/* 3. شبكة المشاريع (هنا يوضع زر GitHub) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
-            <article key={project.id} className="group bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500">
+            <article key={project.id} className="group bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 text-right">
               <div className="h-64 overflow-hidden relative">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -107,7 +108,7 @@ export default function ProjectsPage() {
                   {project.description}
                 </p>
                 
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex flex-wrap gap-2 mb-8 justify-start">
                   {project.tags.map(tag => (
                     <span key={tag} className="text-[10px] font-bold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
                       #{tag}
@@ -115,13 +116,18 @@ export default function ProjectsPage() {
                   ))}
                 </div>
 
+                {/* 🔴 هنا مكان زر GitHub و ExternalLink في أسفل البطاقة */}
                 <div className="flex items-center justify-between pt-6 border-t dark:border-slate-800">
                   <div className="text-sm font-bold text-slate-700 dark:text-slate-300">
                     بواسطة: <span className="text-slate-500 font-medium">{project.team}</span>
                   </div>
                   <div className="flex gap-3">
-                    <button className="text-slate-400 hover:text-qec-blue transition-colors"><Github size={20} /></button>
-                    <button className="text-slate-400 hover:text-qec-brown transition-colors"><ExternalLink size={20} /></button>
+                    <button className="text-slate-400 hover:text-qec-blue transition-colors">
+                      <GitHub size={20} />
+                    </button>
+                    <button className="text-slate-400 hover:text-qec-brown transition-colors">
+                      <ExternalLink size={20} />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -129,15 +135,51 @@ export default function ProjectsPage() {
           ))}
         </div>
 
-        {/* حالة عدم وجود مشاريع */}
-        {filteredProjects.length === 0 && (
-          <div className="text-center py-20 bg-white dark:bg-slate-900 rounded-[3rem] border-2 border-dashed border-slate-200 dark:border-slate-800">
-            <Rocket className="mx-auto text-slate-300 mb-4" size={48} />
-            <p className="text-slate-500 font-medium text-lg">لا توجد مشاريع في هذا القسم حالياً، كن أول من يضيف مشروعه!</p>
-          </div>
-        )}
-
       </div>
+
+      {/* 🔴 نافذة إضافة مشروع (Modal) */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}></div>
+          <div className="relative bg-white dark:bg-slate-900 w-full max-w-2xl rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-slate-800 overflow-hidden animate-in fade-in zoom-in duration-300 text-right">
+            <div className="p-8 md:p-10">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">مشاركة مشروع جديد</h2>
+                <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-400"><X size={24} /></button>
+              </div>
+
+              <form className="space-y-6" dir="rtl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">اسم المشروع</label>
+                    <input type="text" className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-xl p-3 focus:ring-2 focus:ring-qec-blue outline-none text-sm" placeholder="مثال: ذراع آلية.." />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">القسم</label>
+                    <select className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-xl p-3 focus:ring-2 focus:ring-qec-blue outline-none text-sm appearance-none">
+                      {DEPARTMENTS.filter(d => d !== 'الكل').map(d => <option key={d}>{d}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">وصف مختصر</label>
+                  <textarea className="w-full bg-slate-50 dark:bg-slate-800 border-none rounded-xl p-3 focus:ring-2 focus:ring-qec-blue outline-none text-sm h-24" placeholder="اشرح فكرة المشروع في سطرين.."></textarea>
+                </div>
+
+                <div className="border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl p-8 text-center hover:border-qec-blue transition cursor-pointer group">
+                  <Upload className="mx-auto text-slate-300 group-hover:text-qec-blue mb-2" size={32} />
+                  <p className="text-sm text-slate-500 font-medium">اسحب صورة المشروع هنا أو تصفح الملفات</p>
+                </div>
+
+                <button type="submit" className="w-full bg-qec-blue text-white py-4 rounded-xl font-bold hover:bg-blue-600 transition shadow-lg shadow-blue-500/20">
+                  إرسال المشروع للمراجعة
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
