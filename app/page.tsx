@@ -4,117 +4,94 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { 
-  ArrowRight, 
-  ChevronLeft, 
-  ShieldCheck, 
-  Medal, 
-  Users, 
-  TrendingUp, 
-  Rocket, 
-  User, 
-  MapPin, 
-  Calendar 
+  ArrowRight, ChevronLeft, ShieldCheck, Medal, Users, TrendingUp, 
+  Rocket, User, MapPin, Calendar, QrCode 
 } from 'lucide-react';
 
-// استيراد البيانات والمكونات
 import { PROJECTS_DATA, EVENTS_DATA, TOP_STUDENTS, DEPARTMENT_RANKING } from '../lib/data';
 import ProjectCard from '../components/ProjectCard';
 import EventCard from '../components/EventCard';
 
 export default function Home() {
-  // تحضير البيانات للعرض
+  // حل مشكلة التكرار (نقطة 1): استبعاد أول فعالية من القائمة السفلية
   const mainEvent = EVENTS_DATA[0];
+  const remainingEvents = EVENTS_DATA.slice(1, 4); 
   const featuredProjects = PROJECTS_DATA.slice(0, 3);
   const displayStudents = TOP_STUDENTS.slice(0, 5);
 
   return (
-    <div className="relative min-h-screen bg-[#020617] text-white overflow-hidden">
-      {/* الخلفية: شبكة هندسية فخمة */}
-      <div className="absolute inset-0 z-0 opacity-20 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+    <div className="relative min-h-screen bg-[#020617] text-white overflow-x-hidden font-sans">
+      <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:60px_60px]"></div>
 
-      <div className="max-w-7xl mx-auto px-4 pt-10 pb-20 relative z-10 space-y-32">
+      <div className="max-w-7xl mx-auto px-6 pt-10 pb-20 relative z-10 space-y-40">
         
-        {/* 1. قسم الـ Hero: الفعالية الكبرى */}
-        <section className="flex flex-col lg:flex-row gap-12 items-center pt-20">
+        {/* 1. Hero Section: تم تصغير الخطوط وزيادة التباين (نقطة 3) */}
+        <section className="flex flex-col lg:flex-row-reverse gap-16 items-center pt-20">
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="w-full lg:w-1/3 bg-slate-900/50 backdrop-blur-2xl border border-slate-800 p-10 rounded-[3rem] text-center space-y-8 shadow-2xl"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-full lg:w-5/12 text-right space-y-6"
           >
-            <div className="bg-white p-4 rounded-[2rem] inline-block shadow-2xl">
-              {/* استبدل qr-placeholder بـ رابط حقيقي لاحقاً */}
-              <img src="/qr-placeholder.png" alt="QR Code" className="w-48 h-48" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-bold">
+              <ShieldCheck size={14} /> إعلان هام
             </div>
-            <button className="w-full bg-red-600 hover:bg-red-700 py-4 rounded-2xl font-black text-xl transition-all hover:scale-105 shadow-lg shadow-red-600/20">
-              سجل الآن
-            </button>
-            <p className="text-slate-500 text-xs font-bold italic tracking-widest uppercase">⌛ المقاعد محدودة جداً</p>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="w-full lg:w-2/3 text-right space-y-8"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 text-red-500 border border-red-500/20 font-bold text-xs uppercase tracking-widest">
-              <ShieldCheck size={14} /> دورة مميزة قادمة
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black leading-[1.1] tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-black leading-tight text-white">
               {mainEvent.title}
             </h1>
-            <p className="text-xl text-slate-400 max-w-2xl ml-auto leading-relaxed font-medium">
+            <p className="text-lg text-slate-400 leading-relaxed font-medium">
               {mainEvent.description}
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6">
-              <div className="bg-slate-900/50 p-5 rounded-[2rem] border border-slate-800 flex items-center justify-end gap-4 hover:bg-slate-800/50 transition-colors">
-                <div className="text-right">
-                  <p className="text-[10px] text-slate-500 uppercase font-black tracking-tighter">تقديم المهندس</p>
-                  <p className="text-sm font-bold text-white">{mainEvent.presenter}</p>
-                </div>
-                <div className="p-3 bg-qec-blue/10 rounded-xl text-qec-blue"><User size={20} /></div>
+            <div className="flex flex-col gap-4 pt-4 border-r-2 border-slate-800 pr-6">
+              <div className="flex items-center justify-end gap-3">
+                <span className="text-sm font-bold text-slate-200">{mainEvent.presenter}</span>
+                <User size={18} className="text-qec-blue" />
               </div>
-              <div className="bg-slate-900/50 p-5 rounded-[2rem] border border-slate-800 flex items-center justify-end gap-4 hover:bg-slate-800/50 transition-colors">
-                <div className="text-right">
-                  <p className="text-[10px] text-slate-500 uppercase font-black tracking-tighter">موقع الدورة</p>
-                  <p className="text-sm font-bold text-white">{mainEvent.location}</p>
-                </div>
-                <div className="p-3 bg-qec-blue/10 rounded-xl text-qec-blue"><MapPin size={20} /></div>
+              <div className="flex items-center justify-end gap-3">
+                <span className="text-sm font-bold text-slate-200">{mainEvent.location}</span>
+                <MapPin size={18} className="text-qec-blue" />
               </div>
+            </div>
+          </motion.div>
+
+          {/* حل الصورة المكسورة (نقطة 2): استبدالها بـ QR Code تفاعلي */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full lg:w-4/12 bg-slate-900/40 backdrop-blur-3xl border border-white/5 p-12 rounded-[3rem] text-center shadow-2xl relative group"
+          >
+            <div className="absolute inset-0 bg-red-500/5 blur-[80px] rounded-full group-hover:bg-red-500/10 transition-all"></div>
+            <div className="relative z-10 space-y-8">
+              <div className="bg-white p-6 rounded-[2.5rem] inline-block shadow-inner shadow-slate-200">
+                <QrCode size={180} className="text-slate-900" strokeWidth={1.5} />
+              </div>
+              <button className="w-full bg-red-600 hover:bg-red-700 py-4 rounded-2xl font-black text-lg transition-all shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+                احجز مقعدك الآن
+              </button>
             </div>
           </motion.div>
         </section>
 
-        {/* 2. الأنشطة والفعاليات (Grid) */}
+        {/* 2. الأنشطة القادمة: تم حذف التكرار (نقطة 1) */}
         <section className="space-y-12">
           <div className="flex items-center justify-between">
-            <Link href="/events" className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 font-bold text-sm">
-              <ChevronLeft size={18} /> عرض كافة الأنشطة
+            <Link href="/events" className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 font-bold text-xs uppercase tracking-widest">
+              <ChevronLeft size={16} /> المواعيد الكاملة
             </Link>
-            <div className="flex items-center gap-4">
-              <h2 className="text-3xl md:text-4xl font-black">الأنشطة القادمة</h2>
-              <div className="p-3 bg-red-500/10 rounded-2xl text-red-500"><Calendar size={28} /></div>
-            </div>
+            <h2 className="text-3xl font-black">أنشطة أخرى</h2>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {EVENTS_DATA.slice(0, 3).map((event, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {remainingEvents.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
           </div>
         </section>
 
-        {/* 3. معرض الابتكارات */}
+        {/* 3. معرض الابتكارات: توحيد المحاذاة (نقطة 4) */}
         <section className="space-y-12">
-          <div className="flex justify-between items-end border-b border-slate-800 pb-8">
-            <Link href="/projects" className="text-qec-brown dark:text-qec-teal font-bold flex items-center gap-1 hover:underline">
-               تصفح المعرض <Rocket size={20} className="mr-1" />
-            </Link>
-            <div className="text-right">
-              <h2 className="text-3xl md:text-4xl font-black mb-2">معرض الابتكارات</h2>
-              <p className="text-slate-500 font-medium tracking-wide">إبداعات هندسية بأيدي طلابنا</p>
-            </div>
+          <div className="text-right border-b border-slate-800/50 pb-8 flex justify-between items-end">
+             <Link href="/projects" className="text-qec-teal font-bold text-xs">عرض الأرشيف</Link>
+             <h2 className="text-3xl font-black">مشاريع مختارة</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
@@ -123,67 +100,44 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. قسم الترتيب والمنافسة */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* لوحة الشرف */}
-          <div className="bg-slate-900/40 backdrop-blur-xl rounded-[3rem] p-10 border border-slate-800 text-right shadow-2xl">
-            <div className="flex justify-between items-center mb-10">
-              <Link href="/leaderboard" className="text-qec-blue font-bold text-xs hover:underline flex items-center gap-1">القائمة الكاملة <ChevronLeft size={14}/></Link>
-              <h2 className="text-2xl font-black flex items-center gap-3">لوحة الشرف <Medal className="text-amber-500" /></h2>
-            </div>
-            <div className="space-y-4">
+        {/* 4. لوحة الشرف: تحسين التوازن والتباين (نقطة 5) */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-10">
+          <div className="bg-slate-900/20 backdrop-blur-md rounded-[3rem] p-10 border border-white/5 text-right">
+            <h2 className="text-2xl font-black mb-10 flex items-center gap-3 justify-end italic">LEADERBOARD <Medal className="text-amber-500" /></h2>
+            <div className="space-y-3">
               {displayStudents.map((student) => (
-                <motion.div 
-                  whileHover={{ x: -10 }}
-                  key={student.id} 
-                  className="flex items-center justify-between p-5 rounded-[2rem] bg-white/5 border border-white/5 hover:border-qec-blue/30 transition-all cursor-default"
-                >
-                  <div className="flex items-center gap-2 font-black text-qec-blue text-xl tracking-tighter">
-                    <span>{student.points}</span>
-                    <TrendingUp size={18} />
+                <div key={student.id} className="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-colors group">
+                  <span className="font-mono text-qec-blue font-bold tracking-tighter">{student.points} pts</span>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm font-bold text-slate-300">{student.name}</span>
+                    <span className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-xs font-black text-slate-500 group-hover:text-qec-blue">0{student.rank}</span>
                   </div>
-                  <div className="flex items-center gap-5">
-                    <div className="text-right">
-                      <div className="flex items-center gap-2 justify-end">
-                        {student.rank === 1 && <span className="text-[9px] bg-amber-500 text-white px-2 py-0.5 rounded-full font-black uppercase shadow-lg shadow-amber-500/20">King</span>}
-                        <p className="font-bold text-white text-lg">{student.name}</p>
-                      </div>
-                      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">{student.major}</p>
-                    </div>
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl ${student.rank === 1 ? 'bg-amber-500 text-white shadow-2xl shadow-amber-500/40' : 'bg-slate-800 text-slate-400 border border-slate-700'}`}>
-                      {student.rank}
-                    </div>
-                  </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* منافسة الأقسام */}
-          <div className="bg-slate-900 rounded-[3rem] p-10 border border-slate-800 shadow-2xl relative overflow-hidden text-right">
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-            <h2 className="text-2xl font-black mb-12 flex items-center gap-3 justify-end relative z-10">منافسة الأقسام <Users className="text-qec-teal" /></h2>
-            <div className="space-y-12 relative z-10">
+          <div className="space-y-12 text-right">
+            <h2 className="text-2xl font-black flex items-center gap-3 justify-end italic">DEPARTMENTS <Users className="text-qec-teal" /></h2>
+            <div className="space-y-8">
               {DEPARTMENT_RANKING.map((dept) => (
-                <div key={dept.name} className="space-y-4">
-                  <div className="flex justify-between text-sm font-black items-end tracking-tight">
-                    <span className="text-qec-teal text-xl">{dept.points} <span className="text-[10px] text-slate-600 uppercase">Points</span></span>
-                    <span className="text-lg">{dept.name}</span>
+                <div key={dept.name} className="space-y-4 group">
+                  <div className="flex justify-between text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                    <span className="text-qec-teal">{dept.points} XP</span>
+                    <span>{dept.name}</span>
                   </div>
-                  <div className="h-4 w-full bg-white/5 rounded-full overflow-hidden border border-white/5 p-1">
+                  <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                     <motion.div 
                       initial={{ width: 0 }}
                       whileInView={{ width: `${(dept.points / 5000) * 100}%` }}
-                      transition={{ duration: 1.5, ease: "easeOut" }}
-                      className={`h-full ${dept.color} rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)]`}
-                    ></motion.div>
+                      className={`h-full ${dept.color} shadow-[0_0_15px_rgba(0,0,0,0.5)]`}
+                    />
                   </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
-
       </div>
     </div>
   );
