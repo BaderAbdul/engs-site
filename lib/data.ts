@@ -40,31 +40,23 @@ export const PROJECTS_DATA = [
     { id: 10, name: "ياسر المطيري", points: 650, major: "هندسة كهربائية", rank: 10 },
   ];
   
-
   export const EVENTS_DATA = [
     { 
       id: 1, 
-      title: "أساسيات تصميم PCB للأنظمة الذكية", 
-      date: "29 أبريل", 
-      time: "9:00 ص",
-      level: "مبتدئ",
-      location: "قاعة وادي التقنية", 
-      color: "from-qec-blue/10 to-transparent",
-      description: "تعلم كيف تصنع لوحتك الإلكترونية بنفسك من الصفر مع تطبيقات عملية."
+      title: "دورة أساسيات تصميم PCB للأنظمة الذكية", 
+      status: "دورة قادمة",
+      date: "29 أبريل | 9 ص",
+      presenter: "أ. د. إبراهيم الخطيب",
+      location: "قاعة وادي التقنية",
+      description: "هل تساءلت يوماً كيف تصنع لوحتك الإلكترونية بنفسك؟ اكتشف الطريقة اليوم!",
+      topics: ["ما هي لوحة PCB ولماذا نحتاجها؟", "تنظيم الجهد وحماية المكونات", "توصيل الحساسات بطريقة صحيحة", "ترتيب المكونات لتجنب الأعطال"],
+      skills: ["تصميم الدوائر", "برامج EDA", "التخطيط الهندسي"],
+      requirements: ["أساسيات الإلكترونيات", "لابتوب"],
+      color: "border-red-500/50"
     },
-    { 
-      id: 2, 
-      title: "معسكر إنترنت الأشياء (IoT)", 
-      date: "15 مايو", 
-      time: "4:00 م",
-      level: "متوسط",
-      location: "قاعة الابتكار", 
-      color: "from-qec-brown/10 to-transparent",
-      description: "ربط لوحات ESP32 بالسحابة وبناء لوحات تحكم تفاعلية."
-    }
+  
   ];
-  
-  
+
   export const DEPARTMENT_RANKING = [
     { name: "الهندسة الكهربائية", points: 4500, color: "bg-qec-blue" },
     { name: "الهندسة المدنية", points: 3800, color: "bg-qec-teal" },
