@@ -1,42 +1,77 @@
 'use client';
 
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Calendar, Box, Rocket, User } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
+import { Menu, X, Calendar, Rocket, Trophy, Cpu } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navLinks = [
+    { name: 'الفعاليات', href: '/events', icon: Calendar },
+    { name: 'المعرض', href: '/projects', icon: Rocket },
+    { name: 'لوحة التميز', href: '/leaderboard', icon: Trophy },
+  ];
+
   return (
-    <nav className="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 shadow-sm dark:shadow-none">
-        <div className="flex justify-between h-16 items-center">
-          
-          <div className="flex items-center gap-8">
-            <Link href="/" className="text-2xl font-black text-qec-blue transition-colors">
-              QEC <span className="text-qec-brown font-bold">Hub</span>
-            </Link>
-            
-            <div className="hidden md:flex gap-6 text-slate-600 dark:text-slate-300 font-medium">
-              <Link href="/events" className="flex items-center gap-2 hover:text-qec-blue dark:hover:text-qec-teal transition-colors">
-                <Calendar size={18} /> الفعاليات
-              </Link>
-              <Link href="/inventory" className="flex items-center gap-2 hover:text-qec-blue dark:hover:text-qec-teal transition-colors">
-                <Box size={18} /> المستودع
-              </Link>
-              <Link href="/projects" className="flex items-center gap-2 hover:text-qec-blue dark:hover:text-qec-teal transition-colors">
-                <Rocket size={18} /> معرض المشاريع
-              </Link>
-            </div>
-          </div>
+    <nav className="fixed top-0 w-full z-50 bg-[#020617]/80 backdrop-blur-xl border-b border-white/5">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        
+        {/* زر القائمة للموبايل (يظهر فقط في الشاشات الصغيرة) */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-white hover:text-qec-blue transition-colors p-2"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
 
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <Link href="/dashboard" className="bg-qec-brown text-white px-5 py-2.5 rounded-xl hover:bg-[#664b44] transition font-bold text-sm shadow-sm flex items-center gap-2">
-              <User size={18} /> لوحة التحكم
+        {/* الروابط للشاشات الكبيرة (Desktop) */}
+        <div className="hidden md:flex items-center gap-8 flex-row-reverse">
+          {navLinks.map((link) => (
+            <Link key={link.name} href={link.href} className="flex items-center gap-2 text-sm font-bold text-slate-300 hover:text-white transition-colors flex-row-reverse">
+              <link.icon size={16} className="text-qec-blue" />
+              {link.name}
             </Link>
-          </div>
-
+          ))}
         </div>
+
+        {/* الشعار (موجود دائماً) */}
+        <Link href="/" className="flex items-center gap-3">
+          <div className="text-right">
+            <h1 className="text-xl font-black tracking-tight text-white leading-none">
+              QEC <span className="text-qec-blue">ENGINEERS</span>
+            </h1>
+          </div>
+          <div className="p-2 bg-qec-blue/10 rounded-lg border border-qec-blue/20">
+            <Cpu size={20} className="text-qec-blue" />
+          </div>
+        </Link>
       </div>
+
+      {/* قائمة الموبايل المنسدلة (Mobile Dropdown) */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden absolute top-20 left-0 w-full bg-[#020617] border-b border-white/5 py-4 px-6 space-y-4 shadow-2xl"
+          >
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-3 justify-end p-4 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"
+              >
+                <span className="font-bold text-lg text-white">{link.name}</span>
+                <link.icon size={20} className="text-qec-blue" />
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

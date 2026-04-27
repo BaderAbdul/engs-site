@@ -1,65 +1,103 @@
 'use client';
-import { motion } from 'framer-motion';
-import { Calendar, User, MapPin, CheckCircle2, Laptop, Link as LinkIcon } from 'lucide-react';
+
+import React from 'react';
+import { Calendar, MapPin, CheckCircle2, User, ArrowLeft, Users } from 'lucide-react';
+import Link from 'next/link';
 
 export default function EventCard({ event }: { event: any }) {
-  return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -5 }}
-      className={`relative bg-slate-900/40 backdrop-blur-xl rounded-[2.5rem] border-2 ${event.color || 'border-slate-800'} p-8 text-right overflow-hidden group`}
-    >
-      {/* إضاءة خلفية خفيفة */}
-      <div className="absolute -top-24 -left-24 w-48 h-48 bg-qec-blue/10 blur-[100px] rounded-full group-hover:bg-qec-blue/20 transition-all"></div>
+  // تفاصيل افتراضية لغرض العرض بناءً على ملاحظاتك (يفضل إضافتها في lib/data.ts)
+  const isFree = true;
+  const seatsLeft = 5;
+  const organizer = "GDG_QU"; 
+  const learnings = [
+    "مقدمة في الإنترنت الأشياء",
+    "ربط ESP32 بشبكة الـ Wi-Fi",
+    "تصميم واجهة تحكم Blynk"
+  ];
 
-      <div className="relative z-10 space-y-6">
-        <div className="flex justify-between items-center">
-          <span className="bg-red-500/10 text-red-500 border border-red-500/20 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
-            {event.status}
+  return (
+    <div className="bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 md:p-8 flex flex-col justify-between h-full hover:border-white/20 transition-all group shadow-lg">
+      
+      {/* 1. Header: شارات الحالة والتسعير */}
+      <div className="flex justify-between items-center border-b border-white/5 pb-5 mb-6 text-right">
+        {/* شارة السعر (محفز نقر) */}
+        {isFree ? (
+           <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest">
+             مجانًا
+           </span>
+        ) : (
+           <span className="bg-slate-800 text-slate-300 px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest">
+             مدفوع
+           </span>
+        )}
+
+        {/* شارة الفعالية (مع نقطة نابضة) */}
+        <div className="flex items-center gap-2 text-qec-blue bg-qec-blue/5 px-3 py-1.5 rounded-lg text-xs font-bold">
+          <span className="uppercase tracking-widest text-[10px]">{event.status || 'فعالية قادمة'}</span>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-qec-blue opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-qec-blue"></span>
           </span>
         </div>
-
-        <h3 className="text-3xl font-black text-white leading-tight">{event.title}</h3>
-        <p className="text-slate-400 text-sm leading-relaxed">{event.description}</p>
-
-        {/* تفاصيل سريعة */}
-        <div className="space-y-3">
-          <div className="flex items-center justify-end gap-3 bg-white/5 p-3 rounded-2xl border border-white/5">
-            <span className="text-xs font-bold text-slate-300">{event.presenter}</span>
-            <User size={16} className="text-qec-blue" />
-          </div>
-          <div className="flex items-center justify-end gap-3 bg-white/5 p-3 rounded-2xl border border-white/5">
-            <span className="text-xs font-bold text-slate-300">{event.location}</span>
-            <MapPin size={16} className="text-qec-blue" />
-          </div>
-        </div>
-
-        {/* المحاور */}
-        <div className="space-y-3 pt-4">
-          <h4 className="text-sm font-bold text-slate-200">محاور الدورة:</h4>
-          {event.topics.map((topic: string) => (
-            <div key={topic} className="flex items-center justify-end gap-2 text-xs text-slate-400">
-              <span>{topic}</span>
-              <CheckCircle2 size={14} className="text-red-500" />
-            </div>
-          ))}
-        </div>
-
-        {/* المهارات والطلبات */}
-        <div className="flex flex-wrap gap-2 justify-end pt-4">
-          {event.skills.map((skill: string) => (
-            <span key={skill} className="bg-qec-blue/10 text-qec-blue border border-qec-blue/20 px-3 py-1.5 rounded-xl text-[10px] font-bold">
-              {skill}
-            </span>
-          ))}
-        </div>
-
-        <button className="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-2xl font-black flex items-center justify-center gap-2 transition-all shadow-lg shadow-red-600/20">
-           سجل الآن <LinkIcon size={18} />
-        </button>
       </div>
-    </motion.div>
+
+      {/* 2. Body: العنوان والمقدم والبيانات (خط قراءة يميني صارم) */}
+      <div className="space-y-6 flex-grow flex flex-col text-right">
+        <div>
+          <h3 className="text-2xl font-black text-white group-hover:text-qec-blue transition-colors leading-tight mb-3">
+            {event.title}
+          </h3>
+          {/* الجهة المنظمة والمقدم (مصداقية) */}
+          <div className="flex items-center justify-end gap-2 text-xs font-bold text-slate-400">
+             <span>تقديم: {event.presenter}</span>
+             <span className="w-1 h-1 rounded-full bg-slate-600"></span>
+             <span className="text-qec-teal uppercase tracking-widest">{organizer}</span>
+             <User size={14} className="text-slate-500" />
+          </div>
+        </div>
+
+        {/* العرض القيمة (ماذا ستتعلم؟) - محاذاة لليمين */}
+        <div className="bg-[#020617]/50 rounded-2xl p-5 border border-white/5">
+          <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-3">محاور الورشة:</p>
+          <ul className="space-y-2">
+            {learnings.map((item, idx) => (
+              <li key={idx} className="flex items-start justify-end gap-3 text-sm font-medium text-slate-300">
+                <span className="text-right leading-relaxed">{item}</span>
+                <CheckCircle2 size={16} className="text-qec-teal shrink-0 mt-0.5" />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* البيانات الوصفية (صف أفقي / قائمة عمودية منسقة لليمين) */}
+        <div className="flex flex-col gap-3 py-2">
+          <div className="flex items-center justify-end gap-3 text-sm font-bold text-slate-300">
+            <span className="text-right">{event.date || '29 أبريل | 9:00 ص'}</span>
+            <Calendar size={18} className="text-qec-blue" />
+          </div>
+          <div className="flex items-center justify-end gap-3 text-sm font-bold text-slate-300">
+            <span className="text-right">{event.location || 'قاعة وادي التقنية'}</span>
+            <MapPin size={18} className="text-qec-blue" />
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Footer: زر بحجم مناسب وندرة (Scarcity) */}
+      <div className="mt-8 pt-6 border-t border-white/5 flex flex-col md:flex-row-reverse items-center justify-between gap-4">
+        {/* الندرة */}
+        <div className="flex items-center gap-2 text-amber-500 text-xs font-black">
+          <Users size={16} />
+          <span>تبقى {seatsLeft} مقاعد فقط</span>
+        </div>
+
+        {/* زر الإجراء (Fit Content) ومحاذى لليسار في الديسكتوب */}
+        <Link 
+          href={`/events/${event.id}`} 
+          className="w-full md:w-fit bg-qec-blue hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-black text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-qec-blue/20"
+        >
+          سجل حضورك <ArrowLeft size={16} />
+        </Link>
+      </div>
+    </div>
   );
 }
