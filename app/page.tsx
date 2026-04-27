@@ -11,19 +11,19 @@ import {
 import { TOP_STUDENTS, DEPARTMENT_RANKING } from '../lib/data';
 
 export default function Home() {
-  // مصغر الأجندة - جميع اختبارات اليوم (الاثنين 27 أبريل) وغداً (الثلاثاء) من الجداول الرسمية
+  // مصغر الأجندة - اختبارات اليوم (الاثنين 27 أبريل) وغداً (الثلاثاء) من الجداول الرسمية
   const upcomingExams = [
     // الاثنين 27 أبريل (اليوم)
-    [span_2](start_span){ course: "EE312", title: "Electronics 1", time: "8:00 AM", date: "اليوم", color: "text-[#3595D3]" },[span_2](end_span)
-    [span_3](start_span){ course: "ECON401", title: "Engineering Economy", time: "8:00 AM", date: "اليوم", color: "text-[#8C8A88]" },[span_3](end_span)
-    [span_4](start_span){ course: "MATH107", title: "Linear Algebra", time: "10:00 AM", date: "اليوم", color: "text-[#8C8A88]" },[span_4](end_span)
-    [span_5](start_span){ course: "EE463", title: "Mobile Communications", time: "10:00 AM", date: "اليوم", color: "text-[#3595D3]" },[span_5](end_span)
+    { course: "EE312", title: "Electronics 1", time: "8:00 AM", date: "اليوم", color: "text-[#3595D3]" },
+    { course: "ECON401", title: "Engineering Economy", time: "8:00 AM", date: "اليوم", color: "text-[#8C8A88]" },
+    { course: "MATH107", title: "Linear Algebra", time: "10:00 AM", date: "اليوم", color: "text-[#8C8A88]" },
+    { course: "EE463", title: "Mobile Communications", time: "10:00 AM", date: "اليوم", color: "text-[#3595D3]" },
     
     // الثلاثاء 28 أبريل (غداً)
-    [span_6](start_span){ course: "PHYS131", title: "General Physics", time: "8:00 AM", date: "غداً", color: "text-[#8C8A88]" },[span_6](end_span)
-    [span_7](start_span){ course: "EE301", title: "Signals Analysis", time: "8:00 AM", date: "غداً", color: "text-[#3595D3]" },[span_7](end_span)
-    [span_8](start_span){ course: "GE201", title: "Statics", time: "10:00 AM", date: "غداً", color: "text-[#8C8A88]" },[span_8](end_span)
-    [span_9](start_span){ course: "EE351", title: "Control Systems", time: "10:00 AM", date: "غداً", color: "text-[#3595D3]" },[span_9](end_span)
+    { course: "PHYS131", title: "General Physics", time: "8:00 AM", date: "غداً", color: "text-[#8C8A88]" },
+    { course: "EE301", title: "Signals Analysis", time: "8:00 AM", date: "غداً", color: "text-[#3595D3]" },
+    { course: "GE201", title: "Statics", time: "10:00 AM", date: "غداً", color: "text-[#8C8A88]" },
+    { course: "EE351", title: "Control Systems", time: "10:00 AM", date: "غداً", color: "text-[#3595D3]" },
   ];
 
   const latestResources = [
@@ -49,10 +49,10 @@ export default function Home() {
           </p>
         </section>
 
-        {/* 2. Bento Grid: الأجندة والمستودع */}
+        {/* 2. Bento Grid المصغر (الأجندة والمستودع) */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
-          {/* مصغر الأجندة (Calendar Mini) - تم إضافة جميع اختبارات اليوم وغداً */}
+          {/* مصغر الأجندة (Calendar Mini) */}
           <div className="lg:col-span-2 bg-slate-900/40 border border-white/5 rounded-[2.5rem] p-8 space-y-6 shadow-2xl">
             <div className="flex justify-between items-center flex-row-reverse">
               <h2 className="text-xl font-black flex items-center gap-2">أجندة الاختبارات <Calendar className="text-[#3595D3]" size={22}/></h2>
@@ -106,7 +106,6 @@ export default function Home() {
 
         {/* 3. لوحة التميز وتفاعل الأقسام */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-          {/* لوحة التميز */}
           <div className="space-y-6">
             <h2 className="text-xl font-black flex items-center gap-2 justify-end text-slate-200">
               قائمة التميز <Trophy size={22} className="text-amber-500" />
@@ -127,7 +126,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* تفاعل الأقسام */}
           <div className="space-y-8 text-right px-2">
             <h2 className="text-xl font-black flex items-center gap-2 justify-end text-slate-200">
               تفاعل الأقسام <Users size={22} className="text-[#3595D3]" />
@@ -153,7 +151,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-
     </div>
   );
 }
