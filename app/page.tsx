@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { 
   ArrowLeft, ShieldCheck, Medal, Users, TrendingUp, 
   Rocket, Calendar, Cpu, ChevronLeft, Layout, 
-  Trophy, UserPlus, MapPin, ArrowUpLeft, UserCircle
+  Trophy, UserPlus, MapPin, ArrowUpLeft
 } from 'lucide-react';
 
 import { PROJECTS_DATA, EVENTS_DATA, TOP_STUDENTS, DEPARTMENT_RANKING } from '../lib/data';
@@ -24,25 +24,23 @@ export default function Home() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-20 relative z-10 space-y-16 md:space-y-32 text-right">
         
-        {/* 1. ترويسة المنصة (Hero Area) مع الهوية البصرية الجديدة */}
+        {/* 1. ترويسة المنصة (Hero Area) - توحيد الهوية وإصلاح الـ Kerning */}
         <section className="flex flex-col items-center text-center pt-10 md:pt-20">
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="flex items-center gap-3 mb-8"
+            className="flex flex-col md:flex-row items-center gap-4 mb-8"
           >
-            <div className="p-2 bg-[#3595D3]/10 rounded-xl border border-[#3595D3]/20">
-              <Cpu size={32} strokeWidth={1.5} className="text-[#3595D3]" />
+            <div className="p-3 bg-[#3595D3]/10 rounded-2xl border border-[#3595D3]/20 shadow-[0_0_30px_rgba(53,149,211,0.15)]">
+              <Cpu size={36} strokeWidth={1.5} className="text-[#3595D3]" />
             </div>
             
-            {/* النمط المتناوب للهوية (Alternating Colors) */}
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter flex gap-1 justify-center dir-ltr" dir="ltr">
-              <span className="text-[#815346]">G</span>
-              <span className="text-[#3595D3]">D</span>
+            {/* الهوية الجديدة ENG Hub مع مسافات دقيقة وخالية من الفراغات النصية */}
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter flex items-center gap-1 justify-center dir-ltr" dir="ltr">
+              <span className="text-[#815346]">E</span>
+              <span className="text-[#3595D3]">N</span>
               <span className="text-[#8C8A88]">G</span>
-              <span className="text-[#815346]">_</span>
-              <span className="text-[#3595D3]">Q</span>
-              <span className="text-[#8C8A88]">U</span>
+              <span className="text-white ml-3">Hub</span>
             </h1>
           </motion.div>
           
@@ -59,6 +57,7 @@ export default function Home() {
              </Link>
           </div>
 
+          {/* Bento Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-3xl mt-12 px-2">
             {[
               { label: 'مهندس فعال', val: '+250', icon: Users, color: 'text-[#3595D3]' },
@@ -77,7 +76,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. الحدث الأهم */}
+        {/* 2. الحدث الأهم */}
         <section className="bg-slate-900/40 backdrop-blur-3xl rounded-[2.5rem] p-6 md:p-10 border border-white/5 shadow-2xl relative overflow-hidden group">
           <div className="absolute inset-0 bg-[#3595D3]/10 blur-[100px] opacity-10 pointer-events-none rounded-full"></div>
           <div className="relative z-10 flex flex-col lg:flex-row-reverse gap-10 items-center">
@@ -86,13 +85,10 @@ export default function Home() {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-[#3595D3]/10 text-[#3595D3] border border-[#3595D3]/20 text-xs font-bold tracking-widest uppercase mb-2">
                 <ShieldCheck size={14} strokeWidth={1.5} /> الفعاليات الحالية
               </div>
-              
-              {/* التدرج اللوني (Gradient Text) */}
               <h1 className="text-3xl md:text-5xl font-black leading-tight text-white tracking-tight">
                 طور <br/>
                 <span className="bg-gradient-to-r from-[#815346] via-[#8C8A88] to-[#3595D3] bg-clip-text text-transparent">مهاراتك العملية</span>
               </h1>
-              
               <p className="text-base md:text-lg text-slate-400 max-w-xl ml-auto leading-relaxed font-medium">
                 لا تفوت فرصة الحضور والمشاركة في الورش التقنية التي ينظمها النادي لبناء قدراتك الهندسية وتطبيق معرفتك.
               </p>
@@ -123,7 +119,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. لوحة التميز وتفاعل الأقسام */}
+        {/* 3. لوحة التميز (ظهور الأفاتار في الموبايل بالأحرف الاستهلالية) */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <div className="space-y-6">
             <h2 className="text-xl font-black flex items-center gap-2 justify-end text-slate-200">
@@ -135,12 +131,17 @@ export default function Home() {
                   <div className="text-left shrink-0">
                     <span className="font-mono text-[#3595D3] font-bold text-sm">XP {s.points}</span>
                   </div>
-                  <div className="flex items-center gap-4 text-right flex-row-reverse">
+                  <div className="flex items-center gap-3 md:gap-4 text-right flex-row-reverse">
                     <span className="text-xl font-black text-slate-700 w-6 italic shrink-0">0{s.rank}</span>
-                    <UserCircle size={24} strokeWidth={1.5} className="text-slate-500 shrink-0 hidden sm:block" />
+                    
+                    {/* الحرف الاستهلالي - يظهر في جميع الشاشات ويكسر جمود النصوص */}
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#3595D3]/10 border border-[#3595D3]/20 flex items-center justify-center shrink-0">
+                      <span className="text-xs md:text-sm font-black text-[#3595D3]">{s.name.charAt(0)}</span>
+                    </div>
+
                     <div className="space-y-0.5 text-right">
                       <p className="text-sm font-bold text-slate-100">{s.name}</p>
-                      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">{s.major}</p>
+                      <p className="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest">{s.major}</p>
                     </div>
                   </div>
                 </div>
@@ -177,7 +178,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. معرض المبتكرين */}
+        {/* 4. معرض المبتكرين */}
         <section className="space-y-10 pb-10">
           <div className="flex items-center justify-between border-b border-white/5 pb-6 px-1">
              <Link href="/projects" className="group flex items-center gap-2 px-5 py-2.5 border border-[#3595D3]/30 rounded-xl text-xs font-black uppercase tracking-widest text-[#3595D3] hover:bg-[#3595D3] hover:text-white transition-all">
