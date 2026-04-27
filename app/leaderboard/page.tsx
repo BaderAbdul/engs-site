@@ -7,7 +7,7 @@ import {
   Rocket, BookOpen, Mic, Trophy, UserCircle 
 } from 'lucide-react';
 
-import { TOP_STUDENTS, DEPARTMENT_RANKING } from '../lib/data';
+import { TOP_STUDENTS, DEPARTMENT_RANKING } from '../../lib/data';
 
 // بيانات دليل النقاط (مدمجة هنا لسهولة النسخ، ويمكنك فصلها لاحقاً)
 const XP_RULES = [
