@@ -1,4 +1,4 @@
-import { GitHub, ExternalLink } from 'lucide-react';
+import { Code, ExternalLink } from 'lucide-react';
 
 export default function ProjectCard({ project }: { project: any }) {
   return (
@@ -32,7 +32,7 @@ export default function ProjectCard({ project }: { project: any }) {
               بواسطة: <span className="text-slate-500 font-medium">{project.team}</span>
             </span>
             <div className="flex gap-3">
-              <button className="text-slate-400 hover:text-qec-blue transition-colors"><GitHub size={18} /></button>
+              <button className="text-slate-400 hover:text-qec-blue transition-colors"><Code size={18} /></button>
               <button className="text-slate-400 hover:text-qec-brown transition-colors"><ExternalLink size={18} /></button>
             </div>
           </div>
