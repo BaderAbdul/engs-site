@@ -18,90 +18,95 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-[#020617] text-white overflow-x-hidden font-sans selection:bg-qec-blue/30">
-      {/* 1. شبكة خلفية خافتة جداً (تجنب التشويش البصري) */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+      {/* شبكة خلفية صامتة جداً للمحاذاة فقط */}
+      <div className="absolute inset-0 z-0 opacity-[0.02] bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:32px_32px]"></div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-20 relative z-10 space-y-20 md:space-y-32 text-right">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-20 relative z-10 space-y-16 md:space-y-32 text-right">
         
-        {/* 2. Hero Section: موازنة الأحجام (Scaling Crisis Fix) */}
-        <section className="flex flex-col items-center text-center space-y-6 py-12 md:py-24">
+        {/* 1. منطقة الهوية (The Brand Area) - تحسين التباين والمسافات */}
+        <section className="flex flex-col items-center text-center py-10 md:py-20">
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-16 h-16 bg-qec-blue/10 rounded-2xl flex items-center justify-center border border-qec-blue/20"
+            className="flex items-center gap-3 mb-6"
           >
-            <Cpu size={32} className="text-qec-blue" />
+             <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white">
+              QEC <span className="text-qec-blue uppercase">ENGINEERS</span>
+            </h1>
+            <div className="p-2 bg-qec-blue/10 rounded-xl border border-qec-blue/20">
+              <Cpu size={28} className="text-qec-blue" />
+            </div>
           </motion.div>
           
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-tight">
-              QEC <span className="text-qec-blue">HUB</span>
-            </h1>
-            <p className="text-base md:text-lg text-slate-400 max-w-xl mx-auto leading-relaxed font-medium">
-              المنصة التقنية الرسمية لنادي كلية الهندسة. <br /> نبتكر، نبني، ونقود المستقبل.
-            </p>
-          </div>
+          <p className="text-base md:text-xl text-slate-300 max-w-lg mx-auto leading-relaxed font-medium px-4">
+            المجتمع الرقمي لمهندسي القادم. <br className="hidden md:block" />
+            نبتكر، نبني، ونقود المستقبل.
+          </p>
 
-          {/* الإحصائيات: توازن الأيقونة والرقم (نقطة 1 & 2) */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-2xl pt-8">
+          {/* 2. الإحصائيات (Bento Grid) - صفين في الموبايل (نقطة 2) */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-2xl mt-12">
             {[
-              { label: 'عضو', val: '+250', icon: Users },
-              { label: 'مشروع', val: '+40', icon: Rocket },
-              { label: 'ورشة', val: '+15', icon: Calendar },
-              { label: 'نقطة', val: '5k+', icon: TrendingUp },
+              { label: 'مهندس', val: '+250', icon: Users, color: 'text-blue-400' },
+              { label: 'ابتكار', val: '+40', icon: Rocket, color: 'text-orange-400' },
+              { label: 'فعالية', val: '+15', icon: Calendar, color: 'text-emerald-400' },
+              { label: 'نقطة', val: '5k+', icon: TrendingUp, color: 'text-purple-400' },
             ].map((stat, i) => (
-              <div key={i} className="p-4 bg-white/5 rounded-2xl border border-white/5 flex flex-col items-center justify-center space-y-2">
-                <stat.icon size={20} className="text-qec-blue opacity-80" />
-                <div>
-                  <p className="text-lg font-bold tracking-tight">{stat.val}</p>
-                  <p className="text-[9px] text-slate-500 uppercase font-black tracking-widest leading-none">{stat.label}</p>
+              <div key={i} className="p-5 bg-white/[0.03] rounded-3xl border border-white/5 flex flex-col items-center gap-3 hover:bg-white/[0.06] transition-all group">
+                <stat.icon size={24} className={`${stat.color} opacity-90 group-hover:scale-110 transition-transform`} />
+                <div className="text-center">
+                  <p className="text-xl font-bold tracking-tight">{stat.val}</p>
+                  <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest leading-none mt-1">{stat.label}</p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 3. لوحة الشرف: محاذاة Safe Zones (نقطة 2) */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+        {/* 3. لوحة التميز (Ranking) - مع Padding كافٍ (نقطة 3) */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
           <div className="space-y-6">
-            <h2 className="text-xl font-black flex items-center gap-2 justify-end text-slate-300">
-              لوحة التميز <Medal size={18} className="text-amber-500" />
+            <h2 className="text-xl font-black flex items-center gap-2 justify-end text-slate-200">
+              قائمة التميز <Medal size={20} className="text-amber-500" />
             </h2>
-            <div className="bg-slate-900/40 border border-white/5 rounded-3xl overflow-hidden shadow-sm">
+            <div className="bg-slate-900/60 border border-white/5 rounded-[2.5rem] overflow-hidden backdrop-blur-xl shadow-2xl">
               {displayStudents.map((s) => (
-                <div key={s.id} className="flex items-center justify-between p-4 border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors">
-                  <span className="font-mono text-qec-blue font-bold text-sm tracking-tighter">{s.points} XP</span>
-                  <div className="flex items-center gap-4">
-                    <div className="text-right">
-                      <p className="text-sm font-bold text-slate-200">{s.name}</p>
-                      <p className="text-[9px] text-slate-500 font-bold uppercase">{s.major}</p>
+                <div key={s.id} className="flex items-center justify-between p-6 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors">
+                  <div className="text-left">
+                    <span className="font-mono text-qec-blue font-bold text-sm">XP {s.points}</span>
+                  </div>
+                  <div className="flex items-center gap-5 text-right">
+                    <div className="space-y-0.5">
+                      <p className="text-sm font-bold text-slate-100">{s.name}</p>
+                      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{s.major}</p>
                     </div>
-                    <span className="text-lg font-black text-slate-700 w-6">0{s.rank}</span>
+                    <span className="text-2xl font-black text-slate-800/80 w-8 italic">0{s.rank}</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* الأقسام: أشرطة أعرض (نقطة 5) */}
-          <div className="space-y-10 text-right">
-            <h2 className="text-xl font-black flex items-center gap-2 justify-end text-slate-300">
-              منافسة الأقسام <Layout size={18} className="text-qec-teal" />
+          {/* 4. منافسة الأقسام - أشرطة سميكة (نقطة 4) */}
+          <div className="space-y-8 text-right">
+            <h2 className="text-xl font-black flex items-center gap-2 justify-end text-slate-200">
+              تفاعل الأقسام <Layout size={20} className="text-qec-teal" />
             </h2>
-            <div className="space-y-8">
+            <div className="space-y-10 px-1">
               {DEPARTMENT_RANKING.map((dept) => (
-                <div key={dept.name} className="space-y-3">
-                  <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-500 px-1">
-                    <span className="text-qec-teal">{dept.points} XP</span>
-                    <span>{dept.name}</span>
+                <div key={dept.name} className="space-y-4">
+                  <div className="flex justify-between items-end px-1">
+                    <span className="text-qec-teal font-mono text-xs font-bold">{dept.points} XP</span>
+                    <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest">{dept.name}</span>
                   </div>
-                  <div className="h-3 w-full bg-slate-800 rounded-full overflow-hidden border border-white/5">
+                  <div className="h-5 w-full bg-slate-900 rounded-full overflow-hidden border border-white/5 p-1">
                     <motion.div 
                       initial={{ width: 0 }}
                       whileInView={{ width: `${(dept.points / 5000) * 100}%` }}
-                      transition={{ duration: 1, ease: "easeOut" }}
-                      className={`h-full ${dept.color} shadow-lg`}
-                    />
+                      transition={{ duration: 1.5, ease: "circOut" }}
+                      className={`h-full ${dept.color} rounded-full relative flex items-center justify-end px-3`}
+                    >
+                      <span className="text-[9px] font-black text-black/60">{Math.round((dept.points / 5000) * 100)}%</span>
+                    </motion.div>
                   </div>
                 </div>
               ))}
@@ -109,12 +114,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. الأجندة: إلغاء الضخامة الزائدة */}
+        {/* 5. الأجندة - توحيد اللغة وتصغير العناصر (نقطة 5) */}
         <section className="space-y-8">
-          <div className="flex items-center justify-between border-r-2 border-qec-blue pr-4">
-            <h2 className="text-xl md:text-2xl font-black tracking-tight uppercase">Agenda</h2>
-            <Link href="/events" className="text-slate-500 hover:text-white text-[10px] font-bold flex items-center gap-1 uppercase tracking-widest transition-colors">
-              All Events <ChevronLeft size={14} />
+          <div className="flex items-center justify-between border-r-4 border-qec-blue pr-4">
+            <h2 className="text-2xl font-black tracking-tight text-white">الفعاليات القادمة</h2>
+            <Link href="/events" className="text-slate-500 hover:text-white text-[10px] font-black flex items-center gap-1 uppercase tracking-widest transition-colors bg-white/5 px-3 py-1.5 rounded-lg">
+              الكل <ChevronLeft size={14} />
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -124,13 +129,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. المعرض: توازن الصور (نقطة 3) */}
+        {/* 6. المعرض - صور Landscape (نقطة 5) */}
         <section className="space-y-8 pb-10">
-          <div className="flex items-center justify-between border-b border-white/5 pb-4 px-1">
-             <Link href="/projects" className="text-qec-teal font-black text-[10px] uppercase tracking-widest">Showroom</Link>
-             <h2 className="text-xl md:text-2xl font-black tracking-tight uppercase">Featured</h2>
+          <div className="flex items-center justify-between border-b border-white/5 pb-5 px-1">
+             <Link href="/projects" className="text-qec-teal font-black text-[11px] uppercase tracking-widest">معرض الابتكارات</Link>
+             <h2 className="text-2xl font-black tracking-tight text-white uppercase">Featured</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
