@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Calendar, Rocket, BookOpen, Mic, Trophy } from 'lucide-react';
+import { Target, Calendar, Rocket, BookOpen, Mic, Trophy, Users } from 'lucide-react';
 
 const XP_RULES = [
   { 

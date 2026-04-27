@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { 
   ArrowLeft, ShieldCheck, Medal, Users, TrendingUp, 
   Rocket, Calendar, Cpu, ChevronLeft, Layout, 
-  Trophy, UserPlus, MapPin, ArrowUpLeft, UserCircle, QrCode
+  Trophy, UserPlus, MapPin, ArrowUpLeft, UserCircle, QrCode, ArrowUpRight
 } from 'lucide-react';
 
 import { PROJECTS_DATA, EVENTS_DATA, TOP_STUDENTS, DEPARTMENT_RANKING } from '../lib/data';
