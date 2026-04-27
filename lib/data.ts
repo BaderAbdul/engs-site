@@ -56,10 +56,11 @@ export const PROJECTS_DATA = [
     },
   
   ];
-
+  
   export const DEPARTMENT_RANKING = [
-    { name: "الهندسة الكهربائية", points: 4500, color: "bg-qec-blue" },
-    { name: "الهندسة المدنية", points: 3800, color: "bg-qec-teal" },
-    { name: "الهندسة الميكانيكية", points: 3200, color: "bg-qec-brown" },
+    { name: "الهندسة الكهربائية", points: 4500, color: "bg-blue-500" },      // أزرق (طاقة/إلكترونيات)
+    { name: "الهندسة المدنية", points: 3800, color: "bg-emerald-500" },   // أخضر/تيل (بيئة/بناء)
+    { name: "الهندسة الميكانيكية", points: 3200, color: "bg-orange-500" }, // برتقالي (صناعة/حرارة)
   ];
+  
   
