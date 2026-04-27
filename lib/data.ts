@@ -27,4 +27,23 @@ export const PROJECTS_DATA = [
       tags: ["Design", "Aerodynamics", "Engines"]
     }
   ];
+  export const TOP_STUDENTS = [
+    { id: 1, name: "بدر عبدلله", points: 1250, major: "هندسة كهربائية", rank: 1 },
+    { id: 2, name: "سلطان العتيبي", points: 1180, major: "هندسة مدنية", rank: 2 },
+    { id: 3, name: "فيصل بن محمد", points: 1050, major: "هندسة ميكانيكية", rank: 3 },
+    { id: 4, name: "عمر السالم", points: 980, major: "هندسة كهربائية", rank: 4 },
+    { id: 5, name: "مشعل الحربي", points: 920, major: "هندسة مدنية", rank: 5 },
+    { id: 6, name: "عبدالعزيز الرشيد", points: 850, major: "هندسة ميكانيكية", rank: 6 },
+    { id: 7, name: "فهد الشهري", points: 810, major: "هندسة كهربائية", rank: 7 },
+    { id: 8, name: "ريان القحطاني", points: 790, major: "هندسة مدنية", rank: 8 },
+    { id: 9, name: "نواف الدوسري", points: 720, major: "هندسة ميكانيكية", rank: 9 },
+    { id: 10, name: "ياسر المطيري", points: 650, major: "هندسة كهربائية", rank: 10 },
+  ];
+  
+  
+  export const DEPARTMENT_RANKING = [
+    { name: "الهندسة الكهربائية", points: 4500, color: "bg-qec-blue" },
+    { name: "الهندسة المدنية", points: 3800, color: "bg-qec-teal" },
+    { name: "الهندسة الميكانيكية", points: 3200, color: "bg-qec-brown" },
+  ];
   
