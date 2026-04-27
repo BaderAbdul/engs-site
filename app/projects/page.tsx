@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Rocket, Search, Filter, ArrowUpRight, GitHub, ExternalLink, X, Upload, ChevronLeft } from 'lucide-react';
+import { Rocket, Search, Filter, ArrowUpRight, Code, ExternalLink, X, Upload, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 
 const DEPARTMENTS = ['الكل', 'هندسة كهربائية', 'هندسة مدنية', 'هندسة ميكانيكية'];
@@ -123,7 +123,7 @@ export default function ProjectsPage() {
                   </div>
                   <div className="flex gap-3">
                     <button className="text-slate-400 hover:text-qec-blue transition-colors">
-                      <GitHub size={20} />
+                      <Code size={20} />
                     </button>
                     <button className="text-slate-400 hover:text-qec-brown transition-colors">
                       <ExternalLink size={20} />
