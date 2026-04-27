@@ -1,6 +1,6 @@
 'use client';
 import { Medal, Trophy, Star } from 'lucide-react';
-import { TOP_STUDENTS, DEPARTMENT_RANKING } from '../lib/data';
+import { TOP_STUDENTS, DEPARTMENT_RANKING } from '../../lib/data';
 
 export default function LeaderboardPage() {
   return (
