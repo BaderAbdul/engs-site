@@ -8,7 +8,7 @@ import {
   BookOpen, Rocket, Coffee, User
 } from 'lucide-react';
 
-[span_0](start_span)[span_1](start_span)// البيانات المستخرجة من جدول الاختبارات[span_0](end_span)[span_1](end_span)
+// البيانات المستخرجة من جدول الاختبارات[span_0](end_span)[span_1](end_span)
 const INITIAL_EVENTS = [
   { id: 1, title: "اختبار الجبر الخطي (MATH112)", time: "10:00 AM", date: "2026-04-27", category: "exams", location: "بهو الكلية الرئيسي" },
   { id: 2, title: "هندسة الجهد العالي (EE440)", time: "10:00 AM", date: "2026-04-27", category: "exams", location: "HE-5065" },
