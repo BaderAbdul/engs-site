@@ -19,8 +19,9 @@ export default function Home() {
             <ShieldCheck size={16} /> المنصة الرسمية لكلية الهندسة
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white leading-[1.1]">
-            مستقبلك الهندسي <br /> يبدأ من <span className="text-qec-blue">QEC Hub</span>
+           مستقبلك الهندسي <br /> يبدأ من <span className="text-qec-blue">QEC</span> <span className="text-qec-brown">Hub</span>
           </h1>
+
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
             بوابة رقمية متكاملة تجمع الفعاليات، المستودع، ومعرض الابتكارات لطلاب الهندسة في مكان واحد.
           </p>
