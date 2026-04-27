@@ -35,18 +35,21 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-
-        {/* الشعار (موجود دائماً) */}
+        {/* الشعار - QEC ENGINEERS */}
         <Link href="/" className="flex items-center gap-3">
-          <div className="text-right">
-            <h1 className="text-xl font-black tracking-tight text-white leading-none">
-              QEC <span className="text-qec-blue">ENGINEERS</span>
+          <div className="text-right hidden sm:block">
+            <h1 className="text-xl font-black tracking-tight flex gap-1 justify-end uppercase" dir="ltr">
+              <span className="text-[#815346]">Q</span>
+              <span className="text-[#3595D3]">E</span>
+              <span className="text-[#8C8A88]">C</span>
+              <span className="text-white ml-1">Engineers</span>
             </h1>
           </div>
-          <div className="p-2 bg-qec-blue/10 rounded-lg border border-qec-blue/20">
-            <Cpu size={20} className="text-qec-blue" />
+          <div className="p-2 bg-[#3595D3]/10 rounded-lg border border-[#3595D3]/20">
+            <Cpu size={20} className="text-[#3595D3]" />
           </div>
         </Link>
+
       </div>
 
       {/* قائمة الموبايل المنسدلة (Mobile Dropdown) */}

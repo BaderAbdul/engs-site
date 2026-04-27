@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { 
   ArrowLeft, ShieldCheck, Medal, Users, TrendingUp, 
   Rocket, Calendar, Cpu, ChevronLeft, Layout, 
-  Trophy, UserPlus, MapPin, ArrowUpLeft
+  Trophy, UserPlus, MapPin, ArrowUpLeft, UserCircle
 } from 'lucide-react';
 
 import { PROJECTS_DATA, EVENTS_DATA, TOP_STUDENTS, DEPARTMENT_RANKING } from '../lib/data';
@@ -24,7 +24,7 @@ export default function Home() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-20 relative z-10 space-y-16 md:space-y-32 text-right">
         
-        {/* 1. ترويسة المنصة (Hero Area) - توحيد الهوية وإصلاح الـ Kerning */}
+        {/* 1. ترويسة المنصة (Hero Area) */}
         <section className="flex flex-col items-center text-center pt-10 md:pt-20">
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
@@ -35,12 +35,14 @@ export default function Home() {
               <Cpu size={36} strokeWidth={1.5} className="text-[#3595D3]" />
             </div>
             
-            {/* الهوية الجديدة ENG Hub مع مسافات دقيقة وخالية من الفراغات النصية */}
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter flex items-center gap-1 justify-center dir-ltr" dir="ltr">
-              <span className="text-[#815346]">E</span>
-              <span className="text-[#3595D3]">N</span>
-              <span className="text-[#8C8A88]">G</span>
-              <span className="text-white ml-3">Hub</span>
+            {/* العودة لهوية QEC ENGINEERS مع النمط اللوني المتناوب */}
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter flex flex-wrap items-center justify-center dir-ltr" dir="ltr">
+              <div className="flex gap-1">
+                <span className="text-[#815346]">Q</span>
+                <span className="text-[#3595D3]">E</span>
+                <span className="text-[#8C8A88]">C</span>
+              </div>
+              <span className="text-white ml-3 uppercase">ENGINEERS</span>
             </h1>
           </motion.div>
           
@@ -57,7 +59,6 @@ export default function Home() {
              </Link>
           </div>
 
-          {/* Bento Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-3xl mt-12 px-2">
             {[
               { label: 'مهندس فعال', val: '+250', icon: Users, color: 'text-[#3595D3]' },
@@ -119,7 +120,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. لوحة التميز (ظهور الأفاتار في الموبايل بالأحرف الاستهلالية) */}
+        {/* 3. لوحة التميز */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <div className="space-y-6">
             <h2 className="text-xl font-black flex items-center gap-2 justify-end text-slate-200">
@@ -133,12 +134,9 @@ export default function Home() {
                   </div>
                   <div className="flex items-center gap-3 md:gap-4 text-right flex-row-reverse">
                     <span className="text-xl font-black text-slate-700 w-6 italic shrink-0">0{s.rank}</span>
-                    
-                    {/* الحرف الاستهلالي - يظهر في جميع الشاشات ويكسر جمود النصوص */}
                     <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#3595D3]/10 border border-[#3595D3]/20 flex items-center justify-center shrink-0">
                       <span className="text-xs md:text-sm font-black text-[#3595D3]">{s.name.charAt(0)}</span>
                     </div>
-
                     <div className="space-y-0.5 text-right">
                       <p className="text-sm font-bold text-slate-100">{s.name}</p>
                       <p className="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase tracking-widest">{s.major}</p>
