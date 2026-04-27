@@ -1,6 +1,7 @@
 'use client';
 
-import { ArrowRight, ChevronLeft, ShieldCheck, Medal, Users, TrendingUp } from 'lucide-react';
+// أضف Rocket هنا في القائمة
+import { ArrowRight, ChevronLeft, ShieldCheck, Medal, Users, TrendingUp, Rocket } from 'lucide-react';
 import Link from 'next/link';
 import { PROJECTS_DATA, EVENTS_DATA, TOP_STUDENTS, DEPARTMENT_RANKING } from '../lib/data';
 import ProjectCard from '../components/ProjectCard';
